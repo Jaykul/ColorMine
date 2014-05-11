@@ -31,6 +31,11 @@ var points = space.SelectNodes("dataPoints/dataPoint");#>
 
         public <#=spaceName#>() { }
 
+		public <#=spaceName#>(<# foreach(XmlNode point in points) { #>double <#=point.Attributes["label"].Value.ToLower()#><# if(point.Attributes != points[points.Count - 1].Attributes) { #>, <# } #><# } #>)
+		{<# foreach(XmlNode point in points) { #>
+			<#=point.Attributes["label"].Value#> = <#=point.Attributes["label"].Value.ToLower()#>;<# } #>
+		}
+
 		public <#=spaceName#>(IColorSpace color)
 		{
 			Ordinals = color.To<<#=spaceName#>>().Ordinals;

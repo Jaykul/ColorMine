@@ -28,6 +28,13 @@ namespace ColorMine.ColorSpaces
 
         public Rgb() { }
 
+		public Rgb(double r, double g, double b)
+		{
+			R = r;
+			G = g;
+			B = b;
+		}
+
 		public Rgb(IColorSpace color)
 		{
 			Ordinals = color.To<Rgb>().Ordinals;
@@ -77,6 +84,13 @@ namespace ColorMine.ColorSpaces
 		public double Z { get; set; }
 
         public Xyz() { }
+
+		public Xyz(double x, double y, double z)
+		{
+			X = x;
+			Y = y;
+			Z = z;
+		}
 
 		public Xyz(IColorSpace color)
 		{
@@ -128,6 +142,13 @@ namespace ColorMine.ColorSpaces
 
         public Hsl() { }
 
+		public Hsl(double h, double s, double l)
+		{
+			H = h;
+			S = s;
+			L = l;
+		}
+
 		public Hsl(IColorSpace color)
 		{
 			Ordinals = color.To<Hsl>().Ordinals;
@@ -177,6 +198,13 @@ namespace ColorMine.ColorSpaces
 		public double B { get; set; }
 
         public Lab() { }
+
+		public Lab(double l, double a, double b)
+		{
+			L = l;
+			A = a;
+			B = b;
+		}
 
 		public Lab(IColorSpace color)
 		{
@@ -228,6 +256,13 @@ namespace ColorMine.ColorSpaces
 
         public Lch() { }
 
+		public Lch(double l, double c, double h)
+		{
+			L = l;
+			C = c;
+			H = h;
+		}
+
 		public Lch(IColorSpace color)
 		{
 			Ordinals = color.To<Lch>().Ordinals;
@@ -277,6 +312,13 @@ namespace ColorMine.ColorSpaces
 		public double V { get; set; }
 
         public Luv() { }
+
+		public Luv(double l, double u, double v)
+		{
+			L = l;
+			U = u;
+			V = v;
+		}
 
 		public Luv(IColorSpace color)
 		{
@@ -328,6 +370,13 @@ namespace ColorMine.ColorSpaces
 
         public Yxy() { }
 
+		public Yxy(double y1, double x, double y2)
+		{
+			Y1 = y1;
+			X = x;
+			Y2 = y2;
+		}
+
 		public Yxy(IColorSpace color)
 		{
 			Ordinals = color.To<Yxy>().Ordinals;
@@ -377,6 +426,13 @@ namespace ColorMine.ColorSpaces
 		public double Y { get; set; }
 
         public Cmy() { }
+
+		public Cmy(double c, double m, double y)
+		{
+			C = c;
+			M = m;
+			Y = y;
+		}
 
 		public Cmy(IColorSpace color)
 		{
@@ -430,6 +486,14 @@ namespace ColorMine.ColorSpaces
 
         public Cmyk() { }
 
+		public Cmyk(double c, double m, double y, double k)
+		{
+			C = c;
+			M = m;
+			Y = y;
+			K = k;
+		}
+
 		public Cmyk(IColorSpace color)
 		{
 			Ordinals = color.To<Cmyk>().Ordinals;
@@ -481,6 +545,13 @@ namespace ColorMine.ColorSpaces
 
         public Hsv() { }
 
+		public Hsv(double h, double s, double v)
+		{
+			H = h;
+			S = s;
+			V = v;
+		}
+
 		public Hsv(IColorSpace color)
 		{
 			Ordinals = color.To<Hsv>().Ordinals;
@@ -531,6 +602,13 @@ namespace ColorMine.ColorSpaces
 
         public Hsb() { }
 
+		public Hsb(double h, double s, double b)
+		{
+			H = h;
+			S = s;
+			B = b;
+		}
+
 		public Hsb(IColorSpace color)
 		{
 			Ordinals = color.To<Hsb>().Ordinals;
@@ -580,6 +658,13 @@ namespace ColorMine.ColorSpaces
 		public double B { get; set; }
 
         public HunterLab() { }
+
+		public HunterLab(double l, double a, double b)
+		{
+			L = l;
+			A = a;
+			B = b;
+		}
 
 		public HunterLab(IColorSpace color)
 		{
