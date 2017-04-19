@@ -12,7 +12,7 @@
 	document.Load(file);
 	var colorSpaces = document.SelectNodes("colorSpaces/colorSpace");
 #>
-<#@ output extension=".cs" #>//Note: This is a generated file.
+<#@ output extension=".cs" #>// Note: This is a generated file.
 using ColorMine.ColorSpaces.Conversions;
 
 namespace ColorMine.ColorSpaces
@@ -21,19 +21,25 @@ namespace ColorMine.ColorSpaces
 var spaceName = space.Attributes["name"].Value;
 var points = space.SelectNodes("dataPoints/dataPoint");#>
 	public interface I<#=spaceName#> : IColorSpace
-    {<# foreach(XmlNode  point in points) { #>
-		double <#=point.Attributes["label"].Value#> { get; set; }<# } #>
+    {
+<# foreach(XmlNode  point in points) { #>
+		double <#=point.Attributes["label"].Value#> { get; set; }
+<# } #>
     }
 
     public class <#=spaceName#> : ColorSpace, I<#=spaceName#>
-    {<# foreach(XmlNode point in points) { #>
-		public double <#=point.Attributes["label"].Value#> { get; set; }<# } #>
+    {
+<# foreach(XmlNode point in points) { #>
+		public double <#=point.Attributes["label"].Value#> { get; set; }
+<# } #>
 
         public <#=spaceName#>() { }
 
 		public <#=spaceName#>(<# foreach(XmlNode point in points) { #>double <#=point.Attributes["label"].Value.ToLower()#><# if(point.Attributes != points[points.Count - 1].Attributes) { #>, <# } #><# } #>)
-		{<# foreach(XmlNode point in points) { #>
-			<#=point.Attributes["label"].Value#> = <#=point.Attributes["label"].Value.ToLower()#>;<# } #>
+		{
+<# foreach(XmlNode point in points) { #>
+			<#=point.Attributes["label"].Value#> = <#=point.Attributes["label"].Value.ToLower()#>;
+<# } #>
 		}
 
 		public <#=spaceName#>(IColorSpace color)
@@ -51,6 +57,15 @@ var points = space.SelectNodes("dataPoints/dataPoint");#>
             <#=spaceName#>Converter.ToColorSpace(color,this);
         }
 
+        public override string ToString()
+		{
+		    return string.Join(", ", new []{
+<# foreach(XmlNode point in points) { #>
+		       "<#=point.Attributes["label"].Value#>: " + <#=point.Attributes["label"].Value#>,
+<# } #>
+            });
+		}
+
         public override IRgb ToRgb()
         {
             return <#=spaceName#>Converter.ToColor(this);
@@ -63,9 +78,11 @@ var points = space.SelectNodes("dataPoints/dataPoint");#>
 		        return new[] {<# foreach(XmlNode point in points) { #> <#=point.Attributes["label"].Value#>,<# } #> };
 		    }
 			set
-			{<# var counter = 0; foreach(XmlNode point in points) { #>
-				<#=point.Attributes["label"].Value#> = value[<#=counter++#>];<# } #>
-
+			{
+<# var counter = 0; 
+   foreach(XmlNode point in points) { #>
+				<#=point.Attributes["label"].Value#> = value[<#=counter++#>];
+<# } #>
 			}
 		}
     }

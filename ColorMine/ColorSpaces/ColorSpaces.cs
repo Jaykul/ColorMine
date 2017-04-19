@@ -1,18 +1,8 @@
-﻿
-
-
-
-
-
-
-
-
-//Note: This is a generated file.
+﻿// Note: This is a generated file.
 using ColorMine.ColorSpaces.Conversions;
 
 namespace ColorMine.ColorSpaces
 {
-
 	public interface IRgb : IColorSpace
     {
 		double R { get; set; }
@@ -50,6 +40,15 @@ namespace ColorMine.ColorSpaces
             RgbConverter.ToColorSpace(color,this);
         }
 
+        public override string ToString()
+		{
+		    return string.Join(", ", new []{
+		       "R: " + R,
+		       "G: " + G,
+		       "B: " + B,
+            });
+		}
+
         public override IRgb ToRgb()
         {
             return RgbConverter.ToColor(this);
@@ -69,7 +68,6 @@ namespace ColorMine.ColorSpaces
 			}
 		}
     }
-
 	public interface IXyz : IColorSpace
     {
 		double X { get; set; }
@@ -107,6 +105,15 @@ namespace ColorMine.ColorSpaces
             XyzConverter.ToColorSpace(color,this);
         }
 
+        public override string ToString()
+		{
+		    return string.Join(", ", new []{
+		       "X: " + X,
+		       "Y: " + Y,
+		       "Z: " + Z,
+            });
+		}
+
         public override IRgb ToRgb()
         {
             return XyzConverter.ToColor(this);
@@ -126,7 +133,6 @@ namespace ColorMine.ColorSpaces
 			}
 		}
     }
-
 	public interface IHsl : IColorSpace
     {
 		double H { get; set; }
@@ -164,6 +170,15 @@ namespace ColorMine.ColorSpaces
             HslConverter.ToColorSpace(color,this);
         }
 
+        public override string ToString()
+		{
+		    return string.Join(", ", new []{
+		       "H: " + H,
+		       "S: " + S,
+		       "L: " + L,
+            });
+		}
+
         public override IRgb ToRgb()
         {
             return HslConverter.ToColor(this);
@@ -183,7 +198,6 @@ namespace ColorMine.ColorSpaces
 			}
 		}
     }
-
 	public interface ILab : IColorSpace
     {
 		double L { get; set; }
@@ -221,6 +235,15 @@ namespace ColorMine.ColorSpaces
             LabConverter.ToColorSpace(color,this);
         }
 
+        public override string ToString()
+		{
+		    return string.Join(", ", new []{
+		       "L: " + L,
+		       "A: " + A,
+		       "B: " + B,
+            });
+		}
+
         public override IRgb ToRgb()
         {
             return LabConverter.ToColor(this);
@@ -240,7 +263,6 @@ namespace ColorMine.ColorSpaces
 			}
 		}
     }
-
 	public interface ILch : IColorSpace
     {
 		double L { get; set; }
@@ -278,6 +300,15 @@ namespace ColorMine.ColorSpaces
             LchConverter.ToColorSpace(color,this);
         }
 
+        public override string ToString()
+		{
+		    return string.Join(", ", new []{
+		       "L: " + L,
+		       "C: " + C,
+		       "H: " + H,
+            });
+		}
+
         public override IRgb ToRgb()
         {
             return LchConverter.ToColor(this);
@@ -297,7 +328,6 @@ namespace ColorMine.ColorSpaces
 			}
 		}
     }
-
 	public interface ILuv : IColorSpace
     {
 		double L { get; set; }
@@ -335,6 +365,15 @@ namespace ColorMine.ColorSpaces
             LuvConverter.ToColorSpace(color,this);
         }
 
+        public override string ToString()
+		{
+		    return string.Join(", ", new []{
+		       "L: " + L,
+		       "U: " + U,
+		       "V: " + V,
+            });
+		}
+
         public override IRgb ToRgb()
         {
             return LuvConverter.ToColor(this);
@@ -354,7 +393,6 @@ namespace ColorMine.ColorSpaces
 			}
 		}
     }
-
 	public interface IYxy : IColorSpace
     {
 		double Y1 { get; set; }
@@ -392,6 +430,15 @@ namespace ColorMine.ColorSpaces
             YxyConverter.ToColorSpace(color,this);
         }
 
+        public override string ToString()
+		{
+		    return string.Join(", ", new []{
+		       "Y1: " + Y1,
+		       "X: " + X,
+		       "Y2: " + Y2,
+            });
+		}
+
         public override IRgb ToRgb()
         {
             return YxyConverter.ToColor(this);
@@ -411,7 +458,6 @@ namespace ColorMine.ColorSpaces
 			}
 		}
     }
-
 	public interface ICmy : IColorSpace
     {
 		double C { get; set; }
@@ -449,6 +495,15 @@ namespace ColorMine.ColorSpaces
             CmyConverter.ToColorSpace(color,this);
         }
 
+        public override string ToString()
+		{
+		    return string.Join(", ", new []{
+		       "C: " + C,
+		       "M: " + M,
+		       "Y: " + Y,
+            });
+		}
+
         public override IRgb ToRgb()
         {
             return CmyConverter.ToColor(this);
@@ -468,7 +523,6 @@ namespace ColorMine.ColorSpaces
 			}
 		}
     }
-
 	public interface ICmyk : IColorSpace
     {
 		double C { get; set; }
@@ -509,6 +563,16 @@ namespace ColorMine.ColorSpaces
             CmykConverter.ToColorSpace(color,this);
         }
 
+        public override string ToString()
+		{
+		    return string.Join(", ", new []{
+		       "C: " + C,
+		       "M: " + M,
+		       "Y: " + Y,
+		       "K: " + K,
+            });
+		}
+
         public override IRgb ToRgb()
         {
             return CmykConverter.ToColor(this);
@@ -529,7 +593,6 @@ namespace ColorMine.ColorSpaces
 			}
 		}
     }
-
 	public interface IHsv : IColorSpace
     {
 		double H { get; set; }
@@ -567,6 +630,15 @@ namespace ColorMine.ColorSpaces
             HsvConverter.ToColorSpace(color,this);
         }
 
+        public override string ToString()
+		{
+		    return string.Join(", ", new []{
+		       "H: " + H,
+		       "S: " + S,
+		       "V: " + V,
+            });
+		}
+
         public override IRgb ToRgb()
         {
             return HsvConverter.ToColor(this);
@@ -586,7 +658,6 @@ namespace ColorMine.ColorSpaces
 			}
 		}
     }
-
 	public interface IHsb : IColorSpace
     {
 		double H { get; set; }
@@ -624,6 +695,15 @@ namespace ColorMine.ColorSpaces
             HsbConverter.ToColorSpace(color,this);
         }
 
+        public override string ToString()
+		{
+		    return string.Join(", ", new []{
+		       "H: " + H,
+		       "S: " + S,
+		       "B: " + B,
+            });
+		}
+
         public override IRgb ToRgb()
         {
             return HsbConverter.ToColor(this);
@@ -643,7 +723,6 @@ namespace ColorMine.ColorSpaces
 			}
 		}
     }
-
 	public interface IHunterLab : IColorSpace
     {
 		double L { get; set; }
@@ -680,6 +759,15 @@ namespace ColorMine.ColorSpaces
         {
             HunterLabConverter.ToColorSpace(color,this);
         }
+
+        public override string ToString()
+		{
+		    return string.Join(", ", new []{
+		       "L: " + L,
+		       "A: " + A,
+		       "B: " + B,
+            });
+		}
 
         public override IRgb ToRgb()
         {
