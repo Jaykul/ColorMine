@@ -15,18 +15,18 @@ You can convert between any supported color spaces via generic methods like so:
 
 
 ```c#
-var myRgb = new Rgb { R = 149, G = 13, B = 12 }
+var myRgb = new Rgb(149, 13, 12)
 var myCmy = myRgb.To<Cmy>();
 ```
 
 
 ```c#
-var myXyz = new Xyz { X = .44, Y = .7, Z = .99 }
+var myXyz = new Xyz(myRgb);
 var myLab = myXyz.To<Lab>();
 ```
 
 ```c#
-var myYxy = new Xyz { Y1 = .1124, X = .22, Y2 = .14 }
+var myYxy = new Yxy { Y1 = .1124, X = .22, Y2 = .14 };
 var myHsl = myYxy.To<Hsl>();
 ```
 

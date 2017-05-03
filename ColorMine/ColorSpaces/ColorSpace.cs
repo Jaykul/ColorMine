@@ -35,6 +35,11 @@ namespace ColorMine.ColorSpaces
         /// <param name="comparer">Algorithm to use for comparison</param>
         /// <returns>Distance in 3d space as double</returns>
         double Compare(IColorSpace compareToValue, IColorSpaceComparison comparer);
+
+        /// <summary>
+        /// Array of signifigant values in a consistent order. Useful for generic n-dimensional math.
+        /// </summary>
+        double[] Ordinals { get; set; }
     }
 
     /// <summary>
@@ -44,6 +49,7 @@ namespace ColorMine.ColorSpaces
     {
         public abstract void Initialize(IRgb color);
         public abstract IRgb ToRgb();
+        public abstract double[] Ordinals { get; set; }
 
         /// <summary>
         /// Convienience method for comparing any IColorSpace

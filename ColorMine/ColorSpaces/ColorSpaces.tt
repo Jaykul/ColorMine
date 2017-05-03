@@ -12,7 +12,7 @@
 	document.Load(file);
 	var colorSpaces = document.SelectNodes("colorSpaces/colorSpace");
 #>
-<#@ output extension=".cs" #>//Note: This is a generated file.
+<#@ output extension=".cs" #>// Note: This is a generated file.
 using ColorMine.ColorSpaces.Conversions;
 
 namespace ColorMine.ColorSpaces
@@ -33,16 +33,57 @@ var points = space.SelectNodes("dataPoints/dataPoint");#>
 		public double <#=point.Attributes["label"].Value#> { get; set; }
 <# } #>
 
+        public <#=spaceName#>() { }
+
+		public <#=spaceName#>(<# foreach(XmlNode point in points) { #>double <#=point.Attributes["label"].Value.ToLower()#><# if(point.Attributes != points[points.Count - 1].Attributes) { #>, <# } #><# } #>)
+		{
+<# foreach(XmlNode point in points) { #>
+			<#=point.Attributes["label"].Value#> = <#=point.Attributes["label"].Value.ToLower()#>;
+<# } #>
+		}
+
+		public <#=spaceName#>(IColorSpace color)
+		{
+			Ordinals = color.To<<#=spaceName#>>().Ordinals;
+		}
+
+		public <#=spaceName#>(double[] ordinals)
+		{
+			Ordinals = ordinals;
+		}
+
         public override void Initialize(IRgb color)
         {
             <#=spaceName#>Converter.ToColorSpace(color,this);
         }
 
+        public override string ToString()
+		{
+		    return string.Join(", ", new []{
+<# foreach(XmlNode point in points) { #>
+		       "<#=point.Attributes["label"].Value#>: " + <#=point.Attributes["label"].Value#>,
+<# } #>
+            });
+		}
+
         public override IRgb ToRgb()
         {
             return <#=spaceName#>Converter.ToColor(this);
         }
-    }
 
+		public override sealed double[] Ordinals
+		{
+		    get
+		    {
+		        return new[] {<# foreach(XmlNode point in points) { #> <#=point.Attributes["label"].Value#>,<# } #> };
+		    }
+			set
+			{
+<# var counter = 0; 
+   foreach(XmlNode point in points) { #>
+				<#=point.Attributes["label"].Value#> = value[<#=counter++#>];
 <# } #>
-}
+			}
+		}
+    }
+<# } #>}
