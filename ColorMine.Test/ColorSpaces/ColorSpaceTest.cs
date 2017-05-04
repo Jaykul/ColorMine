@@ -36,15 +36,6 @@ namespace ColorMine.Test.ColorSpaces
 			Assert.IsTrue(CloseEnough(expectedColor.L,target.L),"(L)" + expectedColor.L + " != " + target.L);
 		}
 
-		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, IHsb expectedColor)
-		{
-			var target = knownColor.To<Hsb>();
-
-			Assert.IsTrue(CloseEnough(expectedColor.H,target.H),"(H)" + expectedColor.H + " != " + target.H);
-			Assert.IsTrue(CloseEnough(expectedColor.S,target.S),"(S)" + expectedColor.S + " != " + target.S);
-			Assert.IsTrue(CloseEnough(expectedColor.B,target.B),"(B)" + expectedColor.B + " != " + target.B);
-		}
-
 		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, ILab expectedColor)
 		{
 			var target = knownColor.To<Lab>();
@@ -106,6 +97,15 @@ namespace ColorMine.Test.ColorSpaces
 			Assert.IsTrue(CloseEnough(expectedColor.H,target.H),"(H)" + expectedColor.H + " != " + target.H);
 			Assert.IsTrue(CloseEnough(expectedColor.S,target.S),"(S)" + expectedColor.S + " != " + target.S);
 			Assert.IsTrue(CloseEnough(expectedColor.V,target.V),"(V)" + expectedColor.V + " != " + target.V);
+		}
+
+		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, IHsb expectedColor)
+		{
+			var target = knownColor.To<Hsb>();
+
+			Assert.IsTrue(CloseEnough(expectedColor.H,target.H),"(H)" + expectedColor.H + " != " + target.H);
+			Assert.IsTrue(CloseEnough(expectedColor.S,target.S),"(S)" + expectedColor.S + " != " + target.S);
+			Assert.IsTrue(CloseEnough(expectedColor.B,target.B),"(B)" + expectedColor.B + " != " + target.B);
 		}
 
 		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, IHunterLab expectedColor)
