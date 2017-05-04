@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
-    <TargetFrameworks>net45</TargetFrameworks>
+    <TargetFrameworks>net45;netstandard1.6</TargetFrameworks>
     <AssemblyTitle>ColorMine</AssemblyTitle>
     <RootNamespace>ColorMine</RootNamespace>
     <Version>1.2.0</Version>

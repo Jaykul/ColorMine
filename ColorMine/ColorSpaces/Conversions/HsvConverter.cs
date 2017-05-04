@@ -1,22 +1,60 @@
 ﻿using System;
-using System.Drawing;
+using static System.Math;
 
 namespace ColorMine.ColorSpaces.Conversions
 {
-    // Code lovingly copied from StackOverflow (and tweaked a bit)
-    // Question/Answer: http://stackoverflow.com/questions/359612/how-to-change-rgb-color-to-hsv/1626175#1626175
-    // Submitter: Greg http://stackoverflow.com/users/12971/greg
-    // License: http://creativecommons.org/licenses/by-sa/3.0/
     internal static class HsvConverter
     {
+        public static IHsv ToColorSpace(double R, double G, double B)
+        {
+            var min = Min(R, Min(G, B));    //Min. value of RGB
+            var max = Max(R, Max(G, B));    //Max. value of RGB
+            var chroma = max - min;
+
+            double H = 0, S = 0, V = 0;
+            V = max;
+
+            if (chroma == 0) // This is a gray, no chroma...
+            {
+                H = 0;
+                S = 0;
+            }
+            else
+            {
+                S = chroma / max;
+
+                if (R == max)
+                {
+                    H = (G - B) / chroma;
+                    if (G < B)
+                    {
+                        H += 6;
+                    }
+                }
+                else if (G == max)
+                {
+                    H = 2 + ((B - R) / chroma);
+                }
+                else if (B == max)
+                {
+                    H = 4 + ((R - G) / chroma);
+                }
+
+                H *= 60;
+            }
+            return new Hsv(H, S, V);
+        }
+
         internal static void ToColorSpace(IRgb color, IHsv item)
         {
-            var max = Max(color.R, Max(color.G, color.B));
-            var min = Min(color.R, Min(color.G, color.B));
-
-            item.H = Color.FromArgb(255, (int)color.R, (int)color.G, (int)color.B).GetHue();
-            item.S = (max <= 0) ? 0 : 1d - (1d * min / max);
-            item.V = max / 255d;
+            var result = ToColorSpace(color.R / 255d, color.G / 255d, color.B / 255d);
+            item.H = result.H;
+            item.S = result.S;
+            item.V = result.V;
+                        
+            //item.H = Color.FromArgb(255, (int)color.R, (int)color.G, (int)color.B).GetHue();
+            //item.S = (max <= 0) ? 0 : 1d - (1d * min / max);
+            //item.V = max / 255d;
         }
 
         internal static IRgb ToColor(IHsv item)
@@ -48,16 +86,6 @@ namespace ColorMine.ColorSpaces.Conversions
         private static IRgb NewRgb(double r, double g, double b)
         {
             return new Rgb { R = r, G = g, B = b };
-        }
-
-        private static double Max(double a, double b)
-        {
-            return a > b ? a : b;
-        }
-
-        private static double Min(double a, double b)
-        {
-            return a < b ? a : b;
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Media;
 using ColorMine.ColorSpaces.Conversions.Utility;
 
 namespace ColorMine.ColorSpaces.Conversions
@@ -34,36 +33,6 @@ namespace ColorMine.ColorSpaces.Conversions
             }
         }
 
-        public static void ToColorSpace(IRgb color, ICmyk item, Uri cmykProfile)
-        {
-            if (cmykProfile == null)
-            {
-                ToColorSpace(color, item);
-                return;
-            }
-            
-            var cmyk = CmykProfileConverter.TranslateColor(color, cmykProfile);
-            item.C = cmyk.C;
-            item.M = cmyk.M;
-            item.Y = cmyk.Y;
-            item.K = cmyk.K;
-        }
-
-        public static void ToColorSpace(IRgb color, ICmyk item, Uri cmykProfile, Uri rgbProfile)
-        {
-            if (rgbProfile == null)
-            {
-                ToColorSpace(color, item, cmykProfile);
-                return;
-            }
-
-            var cmyk = CmykProfileConverter.TranslateColor(color, cmykProfile, rgbProfile);
-            item.C = cmyk.C;
-            item.M = cmyk.M;
-            item.Y = cmyk.Y;
-            item.K = cmyk.K;
-        }
-
         public static IRgb ToColor(ICmyk item)
         {
             var cmy = new Cmy
@@ -74,18 +43,6 @@ namespace ColorMine.ColorSpaces.Conversions
                 };
 
             return cmy.ToRgb();
-        }
-
-        public static IRgb ToColor(ICmyk item, Uri profile)
-        {
-            var points = new[] { (float)item.C, (float)item.M, (float)item.Y, (float)item.K };
-            var color = Color.FromValues(points, profile);
-            return new Rgb
-                {
-                    R = color.R,
-                    G = color.G,
-                    B = color.B
-                };
         }
     }
 }
