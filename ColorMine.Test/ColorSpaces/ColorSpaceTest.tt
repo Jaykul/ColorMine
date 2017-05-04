@@ -7,10 +7,16 @@
 <#@ import Namespace="System.IO" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#
-	var document = new XmlDocument();
-	var file = Host.ResolvePath("../TestData/ConversionResults.xml");
-	document.Load(file);
-	var colors = document.SelectNodes("ConversionResults/*");
+	var document1 = new XmlDocument();
+	var file1 = Host.ResolvePath("../TestData/ConversionResults.xml");
+	document1.Load(file1);
+	var colors = document1.SelectNodes("ConversionResults/*");
+
+	var document2 = new XmlDocument();
+	var file2 = Host.ResolvePath("../../ColorMine/ColorSpaces/ColorSpaces.xml");
+	document2.Load(file2);
+	var colorSpaces = document2.SelectSingleNode("colorSpaces");
+
 #>
 <#@ output extension=".cs" #>//Note: This is a generated file.
 using ColorMine.ColorSpaces;
@@ -30,26 +36,21 @@ namespace ColorMine.Test.ColorSpaces
 	foreach (XmlNode toSpace in test.ChildNodes) {
 		var toName = toSpace.Name;
 #>
-
 		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, I<#= toName #> expectedColor)
 		{
 			var target = knownColor.To<<#= toName #>>();
+<# 
+		var dataPoint = colorSpaces.SelectSingleNode("colorSpace[@name='" + toName + "']/dataPoints");
 
-<# foreach (XmlNode attribute in toSpace.Attributes) { if(attribute.Name != "Name") { #>
-			Assert.IsTrue(CloseEnough(expectedColor.<#= attribute.Name #>,target.<#= attribute.Name #>),"(<#= attribute.Name #>)" + expectedColor.<#= attribute.Name #> + " != " + target.<#= attribute.Name #>);
-<# } }#>
+		foreach (XmlNode attribute in toSpace.Attributes) { 
+		   if(attribute.Name != "Name") {
+			   var max = int.Parse(dataPoint.SelectSingleNode("dataPoint[@label='"+ attribute.Name + "']/@max").Value);
+			   double delta = max * 0.005;
+
+#>
+			Assert.AreEqual(expectedColor.<#= attribute.Name #>, target.<#= attribute.Name #>, <#= delta #>, "(<#= attribute.Name #>)" + expectedColor.<#= attribute.Name #> + " != " + target.<#= attribute.Name #>);
+<# } } #>
 		}
 <# } #>
-		private static bool CloseEnough(double a, double b)
-		{
-			// Define the tolerance for variation in their values 
-			var difference = Math.Abs(a * .01);
-
-			// Compare the values 
-			// The output to the console indicates that the two values are equal 
-			return Math.Abs(a - b) <= difference;
-		}
-
 	}
-
 }

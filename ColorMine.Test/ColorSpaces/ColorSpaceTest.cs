@@ -7,125 +7,90 @@ namespace ColorMine.Test.ColorSpaces
 {
 	public abstract class ColorSpaceTest
     {
-
 		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, ICmy expectedColor)
 		{
 			var target = knownColor.To<Cmy>();
-
-			Assert.IsTrue(CloseEnough(expectedColor.C,target.C),"(C)" + expectedColor.C + " != " + target.C);
-			Assert.IsTrue(CloseEnough(expectedColor.M,target.M),"(M)" + expectedColor.M + " != " + target.M);
-			Assert.IsTrue(CloseEnough(expectedColor.Y,target.Y),"(Y)" + expectedColor.Y + " != " + target.Y);
+			Assert.AreEqual(expectedColor.C, target.C, 0.005, "(C)" + expectedColor.C + " != " + target.C);
+			Assert.AreEqual(expectedColor.M, target.M, 0.005, "(M)" + expectedColor.M + " != " + target.M);
+			Assert.AreEqual(expectedColor.Y, target.Y, 0.005, "(Y)" + expectedColor.Y + " != " + target.Y);
 		}
-
 		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, ICmyk expectedColor)
 		{
 			var target = knownColor.To<Cmyk>();
-
-			Assert.IsTrue(CloseEnough(expectedColor.C,target.C),"(C)" + expectedColor.C + " != " + target.C);
-			Assert.IsTrue(CloseEnough(expectedColor.M,target.M),"(M)" + expectedColor.M + " != " + target.M);
-			Assert.IsTrue(CloseEnough(expectedColor.Y,target.Y),"(Y)" + expectedColor.Y + " != " + target.Y);
-			Assert.IsTrue(CloseEnough(expectedColor.K,target.K),"(K)" + expectedColor.K + " != " + target.K);
+			Assert.AreEqual(expectedColor.C, target.C, 0.005, "(C)" + expectedColor.C + " != " + target.C);
+			Assert.AreEqual(expectedColor.M, target.M, 0.005, "(M)" + expectedColor.M + " != " + target.M);
+			Assert.AreEqual(expectedColor.Y, target.Y, 0.005, "(Y)" + expectedColor.Y + " != " + target.Y);
+			Assert.AreEqual(expectedColor.K, target.K, 0.005, "(K)" + expectedColor.K + " != " + target.K);
 		}
-
 		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, IHsl expectedColor)
 		{
 			var target = knownColor.To<Hsl>();
-
-			Assert.IsTrue(CloseEnough(expectedColor.H,target.H),"(H)" + expectedColor.H + " != " + target.H);
-			Assert.IsTrue(CloseEnough(expectedColor.S,target.S),"(S)" + expectedColor.S + " != " + target.S);
-			Assert.IsTrue(CloseEnough(expectedColor.L,target.L),"(L)" + expectedColor.L + " != " + target.L);
+			Assert.AreEqual(expectedColor.H, target.H, 1.8, "(H)" + expectedColor.H + " != " + target.H);
+			Assert.AreEqual(expectedColor.S, target.S, 0.5, "(S)" + expectedColor.S + " != " + target.S);
+			Assert.AreEqual(expectedColor.L, target.L, 0.5, "(L)" + expectedColor.L + " != " + target.L);
 		}
-
 		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, ILab expectedColor)
 		{
 			var target = knownColor.To<Lab>();
-
-			Assert.IsTrue(CloseEnough(expectedColor.L,target.L),"(L)" + expectedColor.L + " != " + target.L);
-			Assert.IsTrue(CloseEnough(expectedColor.A,target.A),"(A)" + expectedColor.A + " != " + target.A);
-			Assert.IsTrue(CloseEnough(expectedColor.B,target.B),"(B)" + expectedColor.B + " != " + target.B);
+			Assert.AreEqual(expectedColor.L, target.L, 0.5, "(L)" + expectedColor.L + " != " + target.L);
+			Assert.AreEqual(expectedColor.A, target.A, 0.64, "(A)" + expectedColor.A + " != " + target.A);
+			Assert.AreEqual(expectedColor.B, target.B, 0.64, "(B)" + expectedColor.B + " != " + target.B);
 		}
-
 		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, ILch expectedColor)
 		{
 			var target = knownColor.To<Lch>();
-
-			Assert.IsTrue(CloseEnough(expectedColor.L,target.L),"(L)" + expectedColor.L + " != " + target.L);
-			Assert.IsTrue(CloseEnough(expectedColor.C,target.C),"(C)" + expectedColor.C + " != " + target.C);
-			Assert.IsTrue(CloseEnough(expectedColor.H,target.H),"(H)" + expectedColor.H + " != " + target.H);
+			Assert.AreEqual(expectedColor.L, target.L, 0.5, "(L)" + expectedColor.L + " != " + target.L);
+			Assert.AreEqual(expectedColor.C, target.C, 0.5, "(C)" + expectedColor.C + " != " + target.C);
+			Assert.AreEqual(expectedColor.H, target.H, 1.8, "(H)" + expectedColor.H + " != " + target.H);
 		}
-
 		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, IRgb expectedColor)
 		{
 			var target = knownColor.To<Rgb>();
-
-			Assert.IsTrue(CloseEnough(expectedColor.R,target.R),"(R)" + expectedColor.R + " != " + target.R);
-			Assert.IsTrue(CloseEnough(expectedColor.G,target.G),"(G)" + expectedColor.G + " != " + target.G);
-			Assert.IsTrue(CloseEnough(expectedColor.B,target.B),"(B)" + expectedColor.B + " != " + target.B);
+			Assert.AreEqual(expectedColor.R, target.R, 1.275, "(R)" + expectedColor.R + " != " + target.R);
+			Assert.AreEqual(expectedColor.G, target.G, 1.275, "(G)" + expectedColor.G + " != " + target.G);
+			Assert.AreEqual(expectedColor.B, target.B, 1.275, "(B)" + expectedColor.B + " != " + target.B);
 		}
-
 		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, IXyz expectedColor)
 		{
 			var target = knownColor.To<Xyz>();
-
-			Assert.IsTrue(CloseEnough(expectedColor.X,target.X),"(X)" + expectedColor.X + " != " + target.X);
-			Assert.IsTrue(CloseEnough(expectedColor.Y,target.Y),"(Y)" + expectedColor.Y + " != " + target.Y);
-			Assert.IsTrue(CloseEnough(expectedColor.Z,target.Z),"(Z)" + expectedColor.Z + " != " + target.Z);
+			Assert.AreEqual(expectedColor.X, target.X, 0.5, "(X)" + expectedColor.X + " != " + target.X);
+			Assert.AreEqual(expectedColor.Y, target.Y, 0.5, "(Y)" + expectedColor.Y + " != " + target.Y);
+			Assert.AreEqual(expectedColor.Z, target.Z, 0.5, "(Z)" + expectedColor.Z + " != " + target.Z);
 		}
-
 		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, IYxy expectedColor)
 		{
 			var target = knownColor.To<Yxy>();
-
-			Assert.IsTrue(CloseEnough(expectedColor.Y1,target.Y1),"(Y1)" + expectedColor.Y1 + " != " + target.Y1);
-			Assert.IsTrue(CloseEnough(expectedColor.X,target.X),"(X)" + expectedColor.X + " != " + target.X);
-			Assert.IsTrue(CloseEnough(expectedColor.Y2,target.Y2),"(Y2)" + expectedColor.Y2 + " != " + target.Y2);
+			Assert.AreEqual(expectedColor.Y1, target.Y1, 0.5, "(Y1)" + expectedColor.Y1 + " != " + target.Y1);
+			Assert.AreEqual(expectedColor.X, target.X, 0.005, "(X)" + expectedColor.X + " != " + target.X);
+			Assert.AreEqual(expectedColor.Y2, target.Y2, 0.005, "(Y2)" + expectedColor.Y2 + " != " + target.Y2);
 		}
-
 		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, ILuv expectedColor)
 		{
 			var target = knownColor.To<Luv>();
-
-			Assert.IsTrue(CloseEnough(expectedColor.L,target.L),"(L)" + expectedColor.L + " != " + target.L);
-			Assert.IsTrue(CloseEnough(expectedColor.U,target.U),"(U)" + expectedColor.U + " != " + target.U);
-			Assert.IsTrue(CloseEnough(expectedColor.V,target.V),"(V)" + expectedColor.V + " != " + target.V);
+			Assert.AreEqual(expectedColor.L, target.L, 0.5, "(L)" + expectedColor.L + " != " + target.L);
+			Assert.AreEqual(expectedColor.U, target.U, 1.12, "(U)" + expectedColor.U + " != " + target.U);
+			Assert.AreEqual(expectedColor.V, target.V, 0.61, "(V)" + expectedColor.V + " != " + target.V);
 		}
-
 		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, IHsv expectedColor)
 		{
 			var target = knownColor.To<Hsv>();
-
-			Assert.IsTrue(CloseEnough(expectedColor.H,target.H),"(H)" + expectedColor.H + " != " + target.H);
-			Assert.IsTrue(CloseEnough(expectedColor.S,target.S),"(S)" + expectedColor.S + " != " + target.S);
-			Assert.IsTrue(CloseEnough(expectedColor.V,target.V),"(V)" + expectedColor.V + " != " + target.V);
+			Assert.AreEqual(expectedColor.H, target.H, 1.8, "(H)" + expectedColor.H + " != " + target.H);
+			Assert.AreEqual(expectedColor.S, target.S, 0.005, "(S)" + expectedColor.S + " != " + target.S);
+			Assert.AreEqual(expectedColor.V, target.V, 0.005, "(V)" + expectedColor.V + " != " + target.V);
 		}
-
 		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, IHsb expectedColor)
 		{
 			var target = knownColor.To<Hsb>();
-
-			Assert.IsTrue(CloseEnough(expectedColor.H,target.H),"(H)" + expectedColor.H + " != " + target.H);
-			Assert.IsTrue(CloseEnough(expectedColor.S,target.S),"(S)" + expectedColor.S + " != " + target.S);
-			Assert.IsTrue(CloseEnough(expectedColor.B,target.B),"(B)" + expectedColor.B + " != " + target.B);
+			Assert.AreEqual(expectedColor.H, target.H, 1.8, "(H)" + expectedColor.H + " != " + target.H);
+			Assert.AreEqual(expectedColor.S, target.S, 0.005, "(S)" + expectedColor.S + " != " + target.S);
+			Assert.AreEqual(expectedColor.B, target.B, 0.005, "(B)" + expectedColor.B + " != " + target.B);
 		}
-
 		protected static void ExpectedValuesForKnownColor(IColorSpace knownColor, IHunterLab expectedColor)
 		{
 			var target = knownColor.To<HunterLab>();
-
-			Assert.IsTrue(CloseEnough(expectedColor.L,target.L),"(L)" + expectedColor.L + " != " + target.L);
-			Assert.IsTrue(CloseEnough(expectedColor.A,target.A),"(A)" + expectedColor.A + " != " + target.A);
-			Assert.IsTrue(CloseEnough(expectedColor.B,target.B),"(B)" + expectedColor.B + " != " + target.B);
+			Assert.AreEqual(expectedColor.L, target.L, 0.5, "(L)" + expectedColor.L + " != " + target.L);
+			Assert.AreEqual(expectedColor.A, target.A, 0.64, "(A)" + expectedColor.A + " != " + target.A);
+			Assert.AreEqual(expectedColor.B, target.B, 0.64, "(B)" + expectedColor.B + " != " + target.B);
 		}
-		private static bool CloseEnough(double a, double b)
-		{
-			// Define the tolerance for variation in their values 
-			var difference = Math.Abs(a * .01);
-
-			// Compare the values 
-			// The output to the console indicates that the two values are equal 
-			return Math.Abs(a - b) <= difference;
-		}
-
 	}
-
 }
