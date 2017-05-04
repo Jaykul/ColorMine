@@ -854,7 +854,7 @@ namespace ColorMine.Test.ColorSpaces
             public void SilverLuvToHsl()
             {
 				var knownColor = new Luv { L = 77.704, U = .001, V = -.013, };
-				var expectedColor = new Hsl { H = 60, S = 0.7874, L = 75.098, };
+				var expectedColor = new Hsl { H = 108, S = 0.02, L = 75.098, };
 
                 ExpectedValuesForKnownColor(knownColor,expectedColor);
             }
