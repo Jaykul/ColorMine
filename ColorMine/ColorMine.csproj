@@ -9,11 +9,7 @@
     <Company>Continuous Automation LLC</Company>
     <Copyright>Copyright © 2017 Joe Zack</Copyright>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Reference Include="PresentationCore" />
-  </ItemGroup>
-
+  
   <ItemGroup>
     <!-- The T4 TextTemplatingFileGenerator Service-->
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
