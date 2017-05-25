@@ -1,5 +1,3 @@
-﻿using System.Drawing;
-
 namespace ColorMine.ColorSpaces.Conversions
 {
     internal static class RgbConverter
