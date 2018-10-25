@@ -40,6 +40,15 @@ namespace ColorMine.Palettes
             labColors.Clear();
         }
 
+        public Palette(){}
+
+        public Palette(IEnumerable<T> items)
+        {
+            foreach(var item in items)
+            {
+                Add(item);
+            }
+        }
 
         /// <remarks>
         /// This comparer ought to be overriden by any implementation which also stores colors in another color space.
