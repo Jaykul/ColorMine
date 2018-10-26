@@ -63,3 +63,6 @@ publish/
 
 #Test files
 *.testsettings
+
+[0-9]*/
+.vs/
